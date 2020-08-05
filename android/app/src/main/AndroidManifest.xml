@@ -5,16 +5,21 @@
          In most cases you can leave this as-is, but you if you want to provide
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>  
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="place_tracker"
+        android:label="Coconut Harvest Map Tracker"
         android:icon="@mipmap/ic_launcher">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBDZvzIGpVnL4fYeJid21D43g3nohZinlI" />
+            android:value="AIzaSyBFs2DjAMcpxJjQV6hHD4GzLMV_qUN3A_8" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

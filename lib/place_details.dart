@@ -3,21 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 
 import 'place.dart';
 //import 'stub_data.dart';
 
 class PlaceDetails extends StatefulWidget {
-  const PlaceDetails({
+  PlaceDetails({
     @required this.place,
+    @required this.navPlaces,
     @required this.onChanged,
+    @required this.onRemoved,
     Key key,
   })  : assert(place != null),
         assert(onChanged != null),
         super(key: key);
 
   final Place place;
-  final ValueChanged<Place> onChanged;
+  final List<Place> navPlaces; 
+  /* final ValueChanged<Place> onChanged; */
+  final void Function(Place) onChanged;
+  final void Function(Place) onRemoved;
+  int curNav = 0;
 
   @override
   PlaceDetailsState createState() => PlaceDetailsState();
@@ -38,9 +45,9 @@ class PlaceDetailsState extends State<PlaceDetails> {
   void initState() {
     _place = widget.place;
     _addressController.text = _place.address;
-    _lastDateController.text = _place.address;
-    _readyDateController.text = _place.address;
-    _countTreesController.text = _place.address;
+    _lastDateController.text = _place.lastDate;
+    _readyDateController.text = _place.readyDate;
+    _countTreesController.text = _place.countTrees.toString();
     _descriptionController.text = _place.description;
     return super.initState();
   }
@@ -49,8 +56,8 @@ class PlaceDetailsState extends State<PlaceDetails> {
     _mapController = controller;
     setState(() {
       _markers.add(Marker(
-        markerId: MarkerId(_place.latLng.toString()),
-        position: _place.latLng,
+        markerId: MarkerId(_place.address),
+        position: LatLng(_place.latitude, _place.longitude),
       ));
     });
   }
@@ -59,6 +66,57 @@ class PlaceDetailsState extends State<PlaceDetails> {
     return ListView(
       padding: const EdgeInsets.fromLTRB(24.0, 12.0, 24.0, 12.0),
       children: <Widget>[
+        Visibility(
+          visible: widget.navPlaces.length > 1,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RaisedButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  onPressed: () {
+                    setState((){
+                      var prevNav = 0;
+                      if (widget.curNav == 0) {
+                        prevNav = widget.navPlaces.length - 1;
+                      }
+                      _place = widget.navPlaces[prevNav];
+                      _addressController.text = _place.address;
+                      _lastDateController.text = _place.lastDate;
+                      _readyDateController.text = _place.readyDate;
+                      _countTreesController.text = _place.countTrees.toString();
+                      _descriptionController.text = _place.description;
+                      widget.curNav = prevNav;
+                    });
+                  },
+                  child: Text('Prev'),
+                ),
+                RaisedButton(
+                  color: Colors.green[500],
+                  textColor: Colors.white,
+                  onPressed: (){
+                    setState((){
+                      var nextNav = widget.curNav + 1;
+                      if (widget.curNav == widget.navPlaces.length - 1) {
+                        nextNav = 0;
+                      }
+                      _place = widget.navPlaces[nextNav];
+                      _addressController.text = _place.address;
+                      _lastDateController.text = _place.lastDate;
+                      _readyDateController.text = _place.readyDate;
+                      _countTreesController.text = _place.countTrees.toString();
+                      _descriptionController.text = _place.description;
+                      widget.curNav = nextNav;
+                    });
+                  },
+                  child: Text('Next'),
+                )
+              ]
+            ),
+          )
+        ),
         _AddressTextField(
           controller: _addressController,
           onChanged: (value) {
@@ -99,21 +157,44 @@ class PlaceDetailsState extends State<PlaceDetails> {
             });
           },
         ),
-        /* _StarBar(
-          rating: _place.starRating,
-          onChanged: (value) {
-            setState(() {
-              _place = _place.copyWith(starRating: value);
-            });
-          },
-        ), */
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              RaisedButton(
+                color: Colors.red,
+                textColor: Colors.white,
+                onPressed: (){
+                  widget.onRemoved(_place);
+                  Navigator.pop(context);
+                }, 
+                child: Text('REMOVE'),
+              ),
+              RaisedButton(
+                color: Colors.green[500],
+                textColor: Colors.white,
+                onPressed: () {
+                  var now = DateTime.now();
+                  var lastDateStr = DateFormat('dd/MM/yyyy').format(now);
+                  var readyDateStr = DateFormat('dd/MM/yyyy').format(DateTime(now.year, now.month + 3, now.day));
+
+                  _place.lastDate = lastDateStr;
+                  _place.readyDate = readyDateStr;
+                  widget.onChanged(_place);
+                  Navigator.pop(context);
+                },
+                child: Text('HARVEST'),
+              ),
+            ]
+          ),
+        ),
         _Map(
-          center: _place.latLng,
+          center: LatLng(_place.latitude, _place.longitude),
           mapController: _mapController,
           onMapCreated: _onMapCreated,
           markers: _markers,
         ),
-        /* const _Reviews(), */
       ],
     );
   }
@@ -129,6 +210,16 @@ class PlaceDetailsState extends State<PlaceDetails> {
             padding: const EdgeInsets.fromLTRB(0.0, 0.0, 8.0, 0.0),
             child: IconButton(
               icon: const Icon(Icons.save, size: 30.0),
+              onPressed: () {
+                widget.onChanged(_place);
+                Navigator.pop(context);
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 0.0, 8.0, 0.0),
+            child: IconButton(
+              icon: const Icon(Icons.crop, size: 30.0),
               onPressed: () {
                 widget.onChanged(_place);
                 Navigator.pop(context);

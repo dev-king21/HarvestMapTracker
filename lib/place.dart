@@ -1,46 +1,44 @@
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'place.g.dart';
 enum PlaceCategory {
   favorite,
   visited,
   wantToGo,
 }
 
+
+@JsonSerializable()
 class Place {
-  const Place({
-    @required this.id,
-    @required this.latLng,
-    @required this.address,
-    @required this.category,
+  
+  Place(
+    this.id,
+    this.latitude,
+    this.longitude,
+    this.address,
+    this.category,
     this.lastDate,
     this.readyDate,
-    @required this.countTrees,
+    this.countTrees,
     this.description,
-    this.starRating = 0,
-  })  : assert(id != null),
-        assert(latLng != null),
-        assert(address != null),
-        assert(category != null),
-        assert(starRating != null && starRating >= 0 && starRating <= 5);
+    this.starRating
+  );  
 
-  final String id;
-  final LatLng latLng;
-  final String address;
-  final String lastDate;
-  final String readyDate;
-  final int countTrees; 
-  final PlaceCategory category;
-  final String description;
-  final int starRating;
-
-
-  double get latitude => latLng.latitude;
-  double get longitude => latLng.longitude;
+  String id;
+  String address;
+  String lastDate;
+  String readyDate;
+  int countTrees; 
+  PlaceCategory category;
+  String description;
+  int starRating;
+  double latitude;
+  double longitude;
 
   Place copyWith({
     String id,
-    LatLng latLng,
+    double latitude,
+    double longitude,
     String address,
     PlaceCategory category,
     String description,
@@ -50,15 +48,20 @@ class Place {
     int starRating,
   }) {
     return Place(
-      id: id ?? this.id,
-      latLng: latLng ?? this.latLng,
-      address: address ?? this.address,
-      category: category ?? this.category,
-      lastDate: lastDate ?? this.lastDate,
-      readyDate: lastDate ?? this.readyDate,
-      countTrees: countTrees ?? this.countTrees,
-      description: description ?? this.description,
-      starRating: starRating ?? this.starRating,
+      id ?? this.id,
+      latitude ?? this.latitude,
+      longitude ?? this.longitude,
+      address ?? this.address,
+      category ?? this.category,
+      lastDate ?? this.lastDate,
+      readyDate ?? this.readyDate,
+      countTrees ?? this.countTrees,
+      description ?? this.description,
+      starRating ?? this.starRating,
     );
   }
+
+  factory Place.fromJson(Map<String, dynamic> json) => _$PlaceFromJson(json);
+  Map<String, dynamic> toJson() => _$PlaceToJson(this);
+
 }

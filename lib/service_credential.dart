@@ -1,0 +1,12 @@
+const Map<String, String> credential = {
+  'type': 'service_account',
+  'project_id': 'harvestmap-279222',
+  'private_key_id': '0394ff486c948e0f90c7da8c4bb55097bf3d1477',
+  'private_key': '-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCqvIqnb2QnplAe\nKA+ZSiX6e28dqwcrxoM7hKbmghB6NjcePLFa9qKEzhOFygEntcVLxmJc9pdP4BT0\nVzcPlLZsMjEUESgDb+QIgIT1c4LUp0sJsvkKWatKxkI7rl2CShSfyVCKZvKAQZA3\ngKKyTVhGHKqZkO7/untv/ejVGDQOkOd3MuabpA8VbWMae9VagIXVlplmI4PhSaEy\nd3LWvQ5Iw5vCgYMagw6hcXbVNLv3Jfx8hp6lelVsgfNDNjpz4T9PMdvJpL5tYzvv\nHV47Kg+IWekC8m/SDJF5dUF5Eynbb+tIh6gFgMSg1adB+qAHuc37PtbYZ2pQop7W\nNrHG5WxJAgMBAAECgf9fhsiVoXCBrZRqOe7Ema9h0+E+BQP1k74udTRj9z90EEfG\neIQYAwhzmvuEgavwlGUs1ae7whorFqPV78L4Y6skzRJ1Y4pdlSNNnniBZNLXBhhC\nocakDGVseU2VfSQYuSbh+5ZQP+LUvZXZd/TCzgwVttIjKrhrwtEaV9xcbvKPMt2G\n1ea/4uO6ub3I6lkJX1UWFzZTouU1YoSpREJ+udbR9IWOK+S1zyBxTwOyMk7+oQTV\nnhiwE1tOVo/TDkaPbxtHUoSWSYx6G7Nrco64IQlxo/R3wQcPUBtmQkwIRewPXUN0\nyRhh5remuzhPBHK2W5A6oq73o10kfKso1MDZXocCgYEA4eJGkpnBg0S68ri/mbJr\nGGUjTEit2ZgsAV5bJJudna4WXbG86X2nasFIsYrBXrL4lUBjbCCFvK4wWvewZTad\nIL41iwgPtVb4JeoVvVej2VHm9x/ay679jSMejiEJj8M3uTWqg9bcvVPf3py+WiQA\nLS3yaI0tTaUy1oIXfHtAhWcCgYEAwYACnoEpjQnNxvzFWXiQr+Gavla+ud/CqbIP\nVw6lEX9XYKkd/ynuOLluUEYzfXQRvFDdUYySVc/2cNzbn3kBCTcm+nkCPBbaS5aq\n2V36WFa4ab17zCXJT+rsbCplT9zYl8sqUe9B90zA/agWhO2Lf/CCn3+8HJXHdY2s\nYafjQs8CgYEAkka9/OGk9yTjC5uoOBfaUonsOdI3AtoQZTJ9Q0+i2iGKSlJ3S50b\ndX6FXLPGVVUAtWZk+/hzoqQKnF4Z1PFw/2stsUMfKQeQ2rykJ2FBsdHgB9iRD6Xa\nfDNp7hBm6Lo6s62VJptVhyVxq+9FNYpqstc2S45g8A8yxMap/uqx9bECgYBf+NbT\nuOpb6qXmcQ6M7tCMe5AdobadSE8rjYYwPrI+eHNlHNwk564g8k+1fuwg6AW36j+r\nJ9aYuznXBqPjd8e8w18Q0h36obcJ0KPShdsaH4D96R5SxdcQTUuP5oMzVi0TNJA7\n7ThBqQ77gHgS3CLZhPe0lk09vEgelPMPyI5eXwKBgQCQT55Bdhf+aaH60swPHl3f\nJuwnGdNta/2kDVlNA8H3IjUuhrdYR4N4RaxY5ifijp+6dQFAhE2KqvtETLoNtHTI\nn8uWLrWjjRUqy8+CXXDWdlKL8mPAkE3RtdFBbEQHgysjaSnSmFJG+dfF9iIQurLa\nVdHzYtGvneA/9co0h2wXaw==\n-----END PRIVATE KEY-----\n',
+  'client_email': 'harvestmap-service-credential@harvestmap-279222.iam.gserviceaccount.com',
+  'client_id': '101476373788079457553',
+  'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
+  'token_uri': 'https://oauth2.googleapis.com/token',
+  'auth_provider_x509_cert_url': 'https://www.googleapis.com/oauth2/v1/certs',
+  'client_x509_cert_url': 'https://www.googleapis.com/robot/v1/metadata/x509/harvestmap-service-credential%40harvestmap-279222.iam.gserviceaccount.com'
+};

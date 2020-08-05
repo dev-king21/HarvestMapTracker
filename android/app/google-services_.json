@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "717012394395",
+    "firebase_url": "https://harvestmap-279222.firebaseio.com",
+    "project_id": "harvestmap-279222",
+    "storage_bucket": "harvestmap-279222.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717012394395:android:09bff7006d9e1f4ec7413e",
+        "android_client_info": {
+          "package_name": "dev.flutter.place_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717012394395-oom44oipu3m99o1fge5l4maq1241vbt8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.flutter.place_tracker",
+            "certificate_hash": "bcd68b34414beae1d3ac54c8e1592c9a3d288a62"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDypwSOvHxKFAMw4xyMObantaFQ8lNayJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
